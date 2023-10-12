@@ -29,19 +29,4 @@
     <string name="username">Username</string>
     <string name="username_top">Username</string>
     <string name="profile">Profile</string>
-    <string name="cart_menu">Cart</string>
-    <string name="rp_0">Rp. 0</string>
-    <string name="total_price">Total Price</string>
-    <string name="order">Order</string>
-    <string name="add_notes_here">Add notes here</string>
-    <string name="checkout">Checkout</string>
-    <string name="nama_makanan_detail">Nama Makanan</string>
-    <string name="rp_10_000">Rp. 10.000</string>
-    <string name="_4_8_detail">4.8</string>
-    <string name="open">Open</string>
-    <string name="lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
-    <string name="location">Location</string>
-    <string name="see_location">See Location</string>
-    <string name="add_to_cart">Add to Cart</string>
-    <string name="add_to_cart_detail">Add to Cart</string>
 </resources>
