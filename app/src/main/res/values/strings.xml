@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Bitaste</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="name_user_home">Farhan</string>
+    <string name="ads">What do you want to eat today?</string>
+    <string name="discount_50">Discount 50%</string>
+    <string name="order_your_food_through_my_app_and_get_your_discount">Order your food through my app and get your discount!</string>
+    <string name="rice">Rice</string>
+    <string name="noodles">Noodles</string>
+    <string name="snack">Snack</string>
+    <string name="drink">Drink</string>
+    <string name="food_menu_list">Food Menu List</string>
+</resources>
