@@ -13,10 +13,10 @@
         android:theme="@style/Theme.Bitaste"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.ActivityCheckout"
+            android:name=".presentation.checkout.ActivityCheckout"
             android:exported="false" />
         <activity
-            android:name=".presentation.ActivityDetailMenu"
+            android:name=".presentation.detailmenu.ActivityDetailMenu"
             android:exported="false" />
         <activity
             android:name=".ActivityDetailMenu"

@@ -29,4 +29,8 @@
     <string name="username">Username</string>
     <string name="username_top">Username</string>
     <string name="profile">Profile</string>
+    <string name="cart_detail">Cart</string>
+    <string name="rp_0">Rp. 0</string>
+    <string name="total_price">Total Price</string>
+    <string name="checkout">Checkout</string>
 </resources>
