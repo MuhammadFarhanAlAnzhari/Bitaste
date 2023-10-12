@@ -11,4 +11,22 @@
     <string name="snack">Snack</string>
     <string name="drink">Drink</string>
     <string name="food_menu_list">Food Menu List</string>
+    <string name="_4_8">4.8</string>
+    <string name="rp_50_000">Rp 50.000</string>
+    <string name="nama_makanan">Nama Makanan</string>
+    <string name="home">Home</string>
+    <string name="cart">Cart</string>
+    <string name="history">History</string>
+    <string name="account">Account</string>
+    <string name="list">List</string>
+    <string name="save">Save</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="phone_number_top">Phone Number</string>
+    <string name="email">Email</string>
+    <string name="email_top">Email</string>
+    <string name="password">Password</string>
+    <string name="password_top">Password</string>
+    <string name="username">Username</string>
+    <string name="username_top">Username</string>
+    <string name="profile">Profile</string>
 </resources>
