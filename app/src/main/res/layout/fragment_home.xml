@@ -142,161 +142,60 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/cv_menu1"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="14dp"
-        android:src="@drawable/ic_nasi"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cv_banner" />
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/cv_menu2"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="14dp"
-        android:src="@drawable/ic_mie"
-        app:layout_constraintStart_toEndOf="@id/cv_menu1"
-        app:layout_constraintTop_toBottomOf="@id/cv_banner" />
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/cv_menu3"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="14dp"
-        android:src="@drawable/ic_snack"
-        app:layout_constraintStart_toEndOf="@id/cv_menu2"
-        app:layout_constraintTop_toBottomOf="@id/cv_banner" />
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/cv_menu4"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="14dp"
-        android:src="@drawable/ic_minuman"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/cv_menu3"
-        app:layout_constraintTop_toBottomOf="@id/cv_banner" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_rice"
-        android:layout_width="wrap_content"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_category"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-4dp"
-        android:text="@string/rice"
-        android:textColor="@color/ungu_tua"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@id/cv_menu1"
-        app:layout_constraintStart_toStartOf="@id/cv_menu1"
-        app:layout_constraintTop_toBottomOf="@id/cv_menu1" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_noodles"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-4dp"
-        android:text="@string/noodles"
-        android:textColor="@color/ungu_tua"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@id/cv_menu2"
-        app:layout_constraintStart_toStartOf="@id/cv_menu2"
-        app:layout_constraintTop_toBottomOf="@id/cv_menu2" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_snack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-4dp"
-        android:text="@string/snack"
-        android:textColor="@color/ungu_tua"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@id/cv_menu3"
-        app:layout_constraintStart_toStartOf="@id/cv_menu3"
-        app:layout_constraintTop_toBottomOf="@id/cv_menu3" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_drink"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-4dp"
-        android:text="@string/drink"
-        android:textColor="@color/ungu_tua"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@id/cv_menu4"
-        app:layout_constraintStart_toStartOf="@id/cv_menu4"
-        app:layout_constraintTop_toBottomOf="@id/cv_menu4" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_food_menu_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="14dp"
-        android:text="@string/food_menu_list"
-        android:textColor="@color/ungu_tua"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_rice" />
+        android:layout_marginTop="8dp"
+        android:nestedScrollingEnabled="true"
+        android:orientation="horizontal"
+        android:paddingHorizontal="8dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="tv_food_menu_list"
+        app:layout_constraintTop_toBottomOf="@id/cv_banner"
+        app:layout_constraintTop_toTopOf="cv_banner"
+        tools:listitem="@layout/item_category_menu" />
 
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_food_menu_list">
+        app:layout_constraintTop_toBottomOf="@id/rv_category">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_food_menu_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:text="@string/food_menu_list"
+            android:textColor="@color/ungu_tua"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/listSwitch"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_menu"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/listSwitch"
+            tools:itemCount="5"
+            tools:listitem="@layout/item_menu_grid" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_menu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:itemCount="5"
-                tools:listitem="@layout/item_list" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </androidx.core.widget.NestedScrollView>
-
-    <Switch
-        android:id="@+id/listSwitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/list"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_drink"
-        tools:checked="false"
-        tools:ignore="TouchTargetSizeCheck" />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav">
-
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/listSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@string/list"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:checked="false"
+            tools:ignore="TouchTargetSizeCheck" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

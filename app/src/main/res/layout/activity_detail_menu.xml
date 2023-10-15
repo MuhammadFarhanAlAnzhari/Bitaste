@@ -77,9 +77,9 @@
       android:layout_height="wrap_content"
       android:layout_marginStart="26dp"
       android:layout_marginTop="302dp"
-      android:text="@string/nama_makanan_detail"
+      tools:text="@string/nama_makanan"
       android:textColor="@color/ungu_tua"
-      android:textSize="22dp"
+      android:textSize="22sp"
       android:textStyle="bold"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
@@ -90,7 +90,7 @@
       android:layout_height="wrap_content"
       android:layout_marginStart="26dp"
       android:layout_marginTop="328dp"
-      android:text="@string/rp_10_000"
+      android:text="@string/rp_50_000"
       android:textColor="@color/orange_tua"
       android:textSize="22sp"
       android:textStyle="bold"
@@ -112,7 +112,7 @@
       android:layout_height="wrap_content"
       android:layout_marginTop="316dp"
       android:layout_marginEnd="36dp"
-      android:text="@string/_4_8_detail"
+      tools:text="@string/_4_8"
       android:textColor="@color/ungu_tua"
       android:textSize="16sp"
       app:layout_constraintEnd_toEndOf="parent"
@@ -132,7 +132,7 @@
       android:layout_height="wrap_content"
       android:layout_marginStart="46dp"
       android:layout_marginTop="362dp"
-      android:text="@string/open"
+      tools:text="@string/open"
       android:textColor="@color/ungu_tua"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
@@ -144,7 +144,7 @@
       android:layout_marginTop="40dp"
       android:gravity="start"
       android:padding="20dp"
-      android:text="@string/lorem_ipsum"
+      tools:text="@string/lorem_ipsum"
       android:textAlignment="gravity"
       android:textColor="@color/ungu_tua"
       android:textSize="12sp"
@@ -184,7 +184,7 @@
           android:layout_height="wrap_content"
           android:layout_marginStart="10dp"
           android:layout_marginTop="14dp"
-          android:text="@string/location"
+          tools:text="@string/location"
           android:textColor="@color/ungu_muda"
           android:textSize="20sp"
           android:textStyle="bold|normal"
@@ -196,7 +196,7 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginStart="10dp"
-          android:text="@string/see_location"
+          tools:text="@string/see_location"
           android:textColor="@color/orange_muda"
           android:textSize="16sp"
           android:textStyle="normal"
@@ -227,7 +227,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/fl_add_to_cart"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="Rp. 20.000" />
+        tools:text="@string/rp_20_000" />
 
     <LinearLayout
         android:id="@+id/ll_counter_product"
@@ -255,7 +255,7 @@
           android:textAlignment="center"
           android:textStyle="bold"
           tools:ignore="RtlCompat"
-          tools:text="23"
+          tools:text="@string/_23"
           android:textColor="@color/orange_tua"/>
 
       <ImageView
@@ -276,7 +276,7 @@
         android:layout_marginEnd="8dp"
         android:textColor="@color/white"
         android:layout_weight="1"
-        android:text="@string/add_to_cart_detail" />
+        tools:text="@string/add_to_cart" />
   </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

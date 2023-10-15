@@ -107,7 +107,7 @@
             android:layout_marginStart="8dp"
             android:alpha="0.6"
             android:background="@drawable/bg_button_rounded_border_transparent"
-            android:hint="@string/add_notes_here"
+            tools:hint="@string/add_notes_here"
             android:imeOptions="actionDone"
             android:inputType="text"
             android:maxLines="3"
@@ -116,7 +116,6 @@
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/iv_menu_image"
-            app:layout_constraintTop_toBottomOf="@id/iv_menu_image"
-            tools:text="Add notes here" />
+            app:layout_constraintTop_toBottomOf="@id/iv_menu_image" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
