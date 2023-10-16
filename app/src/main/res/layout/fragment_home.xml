@@ -151,10 +151,10 @@
         android:orientation="horizontal"
         android:paddingHorizontal="8dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="tv_food_menu_list"
+        app:layout_constraintBottom_toTopOf="@id/tv_food_menu_list"
         app:layout_constraintTop_toBottomOf="@id/cv_banner"
-        app:layout_constraintTop_toTopOf="cv_banner"
-        tools:listitem="@layout/item_category_menu" />
+        tools:listitem="@layout/item_category_menu"
+        tools:ignore="NotSibling" />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

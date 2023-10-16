@@ -39,6 +39,16 @@ android {
     }
     buildFeatures{
         viewBinding= true
+        buildConfig = true
+    }
+    flavorDimensions += "env"
+    productFlavors {
+        create("production") {
+            buildConfigField("String", "BASE_URL", "\"https://39cc9dac-21fc-401d-9cec-9100ffc66406.mock.pstmn.io\"")
+        }
+        create("integration") {
+            buildConfigField("String", "BASE_URL", "\"https://39cc9dac-21fc-401d-9cec-9100ffc66406.mock.pstmn.io\"")
+        }
     }
 }
 
@@ -71,5 +81,9 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:1.6.1")
     //coil
     implementation("io.coil-kt:coil:2.4.0")
+    //retrofit & okhttp
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:okhttp:4.11.0")
 
 }
