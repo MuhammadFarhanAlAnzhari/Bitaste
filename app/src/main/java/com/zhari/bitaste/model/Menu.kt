@@ -6,7 +6,7 @@ import java.util.UUID
 
 @Parcelize
 data class Menu(
-    val id: String = UUID.randomUUID().toString(),
+    val id: Int,
     val name: String,
     val price: Double,
     val rating: Double,

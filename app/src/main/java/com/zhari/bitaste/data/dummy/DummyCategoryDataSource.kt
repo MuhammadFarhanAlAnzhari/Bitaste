@@ -1,4 +1,4 @@
-package com.zhari.bitaste.data.datasource
+package com.zhari.bitaste.data.dummy
 
 import com.zhari.bitaste.model.Category
 

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -11,13 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Bitaste"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
             android:name=".presentation.register.RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.main.MainActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".presentation.login.LoginActivity"
             android:exported="false" />
@@ -29,7 +31,7 @@
             android:exported="false" />
         <activity
             android:name=".presentation.splashscreen.SplashActivity"
-            android:exported="true" >
+            android:exported="true">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,5 +39,5 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        </application>
-    </manifest>
+    </application>
+</manifest>

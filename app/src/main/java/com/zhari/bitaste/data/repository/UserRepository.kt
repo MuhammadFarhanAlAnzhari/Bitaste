@@ -1,8 +1,8 @@
 package com.zhari.bitaste.data.repository
 
 import android.net.Uri
-import com.zhari.bitaste.data.model.User
-import com.zhari.bitaste.data.model.toUser
+import com.zhari.bitaste.model.User
+import com.zhari.bitaste.model.toUser
 import com.zhari.bitaste.data.network.firebase.auth.FirebaseAuthDataSource
 import com.zhari.bitaste.utils.ResultWrapper
 import com.zhari.bitaste.utils.proceedFlow
