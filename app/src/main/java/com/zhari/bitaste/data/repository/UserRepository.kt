@@ -8,10 +8,7 @@ import com.zhari.bitaste.utils.ResultWrapper
 import com.zhari.bitaste.utils.proceedFlow
 import kotlinx.coroutines.flow.Flow
 
-/**
-Written with love by Muhammad Hermas Yuda Pamungkas
-Github : https://github.com/hermasyp
- **/
+
 interface UserRepository {
     suspend fun doLogin(email: String, password: String): Flow<ResultWrapper<Boolean>>
 

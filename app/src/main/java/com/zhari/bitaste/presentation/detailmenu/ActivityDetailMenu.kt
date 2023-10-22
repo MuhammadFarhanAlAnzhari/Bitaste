@@ -5,7 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.zhari.bitaste.R
-import com.zhari.bitaste.model.Menu
+import com.zhari.bitaste.model.product.Menu
 
 class ActivityDetailMenu : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,6 +1,7 @@
+/*
 package com.zhari.bitaste.data.dummy
 
-import com.zhari.bitaste.model.Category
+import com.zhari.bitaste.model.category.Category
 
 interface CategoryDataSource {
     fun getProductCategory(): List<Category>
@@ -27,3 +28,4 @@ class CategoryDataSourceImpl() : CategoryDataSource {
             )
         )
 }
+*/

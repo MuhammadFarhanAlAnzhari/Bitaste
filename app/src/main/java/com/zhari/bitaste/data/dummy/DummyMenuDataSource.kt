@@ -1,6 +1,7 @@
+/*
 package com.zhari.bitaste.data.dummy
 
-import com.zhari.bitaste.model.Menu
+import com.zhari.bitaste.model.product.Menu
 
 
 interface ProductDataSource {
@@ -86,4 +87,4 @@ class ProductDataSourceImpl() : ProductDataSource {
             )
 
     }
-}
+}*/

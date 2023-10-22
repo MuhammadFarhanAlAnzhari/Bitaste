@@ -60,153 +60,79 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/iv_username"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="328dp"
-        android:src="@drawable/ic_username"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_username"
-        android:layout_width="wrap_content"
+    <include
+        android:id="@+id/layout_form"
+        layout="@layout/layout_user_form"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="328dp"
-        android:text="@string/username_top"
-        android:textColor="@color/ungu_tua"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/iv_username"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toTopOf="@id/ll_update_profile"
+        app:layout_constraintTop_toBottomOf="@id/iv_camera" />
 
-    <EditText
-        android:id="@+id/usernameEditText"
-        android:layout_width="358dp"
+    <LinearLayout
+        android:id="@+id/ll_update_profile"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="354dp"
-        android:hint="@string/username"
-        android:minHeight="48dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="16dp" />
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintTop_toBottomOf="@id/layout_form">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/iv_password"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="412dp"
-        android:src="@drawable/ic_password"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <FrameLayout
+            android:id="@+id/fl_change_profile_btn_loading_state"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="16dp">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_password"
-        android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/btn_change_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/ungu_tua"
+                android:text="@string/text_change_profile" />
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/pb_change_profile_loading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_change_password_btn_loading_state"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="16dp">
+
+            <Button
+                android:id="@+id/btn_change_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/ungu_tua"
+                android:text="@string/text_change_password" />
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/pb_change_password_loading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                android:visibility="gone" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="412dp"
-        android:text="@string/password_top"
-        android:textColor="@color/ungu_tua"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/iv_password"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/passwordEditText"
-        android:layout_width="358dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="434dp"
-        android:hint="@string/password"
-        android:minHeight="48dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="16dp" />
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/iv_email"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="488dp"
-        android:src="@drawable/ic_email"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="488dp"
-        android:text="@string/email_top"
-        android:textColor="@color/ungu_tua"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/iv_email"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/emailEditText"
-        android:layout_width="358dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="508dp"
-        android:hint="@string/email"
-        android:minHeight="48dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="16dp" />
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/iv_phone"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="560dp"
-        android:src="@drawable/ic_phone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_phone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="560dp"
-        android:text="@string/phone_number_top"
-        android:textColor="@color/ungu_tua"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/iv_phone"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/phoneEditText"
-        android:layout_width="358dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="580dp"
-        android:hint="@string/phone_number"
-        android:minHeight="48dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="16dp" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_save_profile"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="260dp"
-        android:backgroundTint="@color/ungu_muda"
-        android:text="@string/save"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/phoneEditText" />
+        android:layout_marginHorizontal="16dp"
+        android:background="@color/ungu_tua"
+        android:text="@string/text_logout"
+        app:layout_constraintTop_toBottomOf="@id/ll_update_profile" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

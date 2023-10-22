@@ -39,7 +39,7 @@
     <string name="email_hint">Email</string>
     <string name="password_hint">Password</string>
     <string name="confirm_password_hint">Confirm Password</string>
-    <string name="add_to_cart">Add to Cart</string>
+    <string name="add_to_cart" formatted="false">Tambah ke Keranjang - Rp. %d</string>
     <string name="rp_20_000">Rp. 20.000</string>
     <string name="location">Location</string>
     <string name="see_location">See Location</string>
@@ -62,9 +62,11 @@
     <string name="text_register">Register</string>
     <string name="text_password_does_not_match">Password doesn\'t match</string>
     <string name="text_error_name_cannot_empty">Name cannot be empty</string>
+    <string name="text_error_new_name_must_be_different">The new name cannot be the same as the current name</string>
     <string name="text_highlight_login_here">Login Here</string>
     <string name="text_highlight_register">Register Here</string>
     <string name="text_change_profile">Change Profile</string>
     <string name="text_change_password">Change Password</string>
     <string name="text_logout">Logout</string>
+    <string name="no_data_text">No Data</string>
 </resources>

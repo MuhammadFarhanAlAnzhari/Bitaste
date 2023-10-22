@@ -5,7 +5,7 @@ import coil.load
 import com.zhari.bitaste.core.ViewHolderBinder
 import com.zhari.bitaste.databinding.ItemMenuGridBinding
 import com.zhari.bitaste.databinding.ItemMenuListBinding
-import com.zhari.bitaste.model.Menu
+import com.zhari.bitaste.model.product.Menu
 
 class ProductItemViewHolder {
 }
