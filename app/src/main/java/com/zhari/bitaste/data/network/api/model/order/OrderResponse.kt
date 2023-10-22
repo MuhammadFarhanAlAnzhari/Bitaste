@@ -1,4 +1,4 @@
-package com.catnip.egroceries.data.network.api.model.order
+package com.zhari.bitaste.data.network.api.model.order
 
 
 import com.google.gson.annotations.SerializedName

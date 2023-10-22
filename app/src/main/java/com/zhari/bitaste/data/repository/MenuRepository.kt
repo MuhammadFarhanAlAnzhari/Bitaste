@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.Flow
 interface MenuRepository {
     suspend fun getCategories(): Flow<ResultWrapper<List<Category>>>
     suspend fun getMenus(category: String? = null): Flow<ResultWrapper<List<Menu>>>
+    suspend fun getMenuList(): Flow<ResultWrapper<List<Menu>>>
 }
 
 class MenuRepositoryImpl(
@@ -28,5 +29,9 @@ class MenuRepositoryImpl(
         return proceedFlow {
             apiDataSource.getProducts(category)?.data?.toMenuList() ?: emptyList()
         }
+    }
+
+    override suspend fun getMenuList(): Flow<ResultWrapper<List<Menu>>> {
+        return proceedFlow { apiDataSource.getMenusList().data.toMenuList() }
     }
 }

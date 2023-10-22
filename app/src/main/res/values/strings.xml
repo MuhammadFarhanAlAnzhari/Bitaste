@@ -69,4 +69,17 @@
     <string name="text_change_password">Change Password</string>
     <string name="text_logout">Logout</string>
     <string name="no_data_text">No Data</string>
+    <string name="metode_pembayaran">Metode Pembayaran</string>
+    <string name="ambil_sendiri">Ambil Sendiri</string>
+    <string name="dikirim">Dikirim</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="cash">Cash</string>
+    <string name="e_wallet">E-Wallet</string>
+    <string name="shopping_summary">Shopping Summary</string>
+    <string name="total_pembayaran">Total Pembayaran</string>
+    <string name="rp">Rp</string>
+    <string name="pesan">Pesan</string>
+    <string name="_0">0</string>
+    <string name="catatan">Catatan</string>
+    <string name="total_qty">x%s</string>
 </resources>

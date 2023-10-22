@@ -96,12 +96,13 @@ class HomeFragment : Fragment() {
     }
 
     private fun getData() {
-        homeViewModel.getMenus()
+        /*homeViewModel.getMenus()*/
         homeViewModel.getCategories()
+        homeViewModel.getMenuList()
     }
 
     private fun setObserveDataMenu() {
-        homeViewModel.menus.observe(viewLifecycleOwner){
+        homeViewModel.menuList.observe(viewLifecycleOwner){
             it.proceedWhen(
                 doOnSuccess = { result ->
                     binding.clSubheader.isVisible = true
@@ -138,7 +139,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setRecyclerViewMenu() {
-        val span = if(menuAdapter.adapterLayoutMode == AdapterLayoutMode.LINEAR) 1 else 2
+        val span = if(menuAdapter.adapterLayoutMode == AdapterLayout.LINEAR) 1 else 2
         binding.rvMenu.apply {
             layoutManager = GridLayoutManager(requireContext(),span)
             adapter = this@HomeFragment.menuAdapter
@@ -147,14 +148,14 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupSwitch() {
-        viewModel.userLinearLayoutLiveData.observe(viewLifecycleOwner){
+        viewModel.userGridModeLiveData.observe(viewLifecycleOwner){
             binding.listSwitch.isChecked = it
         }
 
-        binding.switchListGrid.setOnCheckedChangeListener { _, isUsingLinear ->
-            viewModel.setLinearLayoutPref(isUsingLinear)
+        binding.listSwitch.setOnCheckedChangeListener { _, isUsingLinear ->
+            viewModel.setGridModePref(isUsingLinear)
             (binding.rvMenu.layoutManager as GridLayoutManager).spanCount = if (isUsingLinear) 2 else 1
-            menuAdapter.adapterLayoutMode = if(isUsingLinear) AdapterLayoutMode.GRID else AdapterLayoutMode.LINEAR
+            menuAdapter.adapterLayoutMode = if(isUsingLinear) AdapterLayout.GRID else AdapterLayout.LINEAR
             setObserveDataMenu()
         }
     }
@@ -171,33 +172,33 @@ class HomeFragment : Fragment() {
         homeViewModel.categories.observe(viewLifecycleOwner){
             it.proceedWhen(
                 doOnSuccess = { result ->
-                    binding.clCategoryTitle.isVisible = true
-                    binding.layoutStateC.root.isVisible = false
-                    binding.layoutStateC.pbLoading.isVisible = false
-                    binding.layoutStateC.tvError.isVisible = false
+                    binding.clSubheader.isVisible = true
+                    binding.layoutState.root.isVisible = false
+                    binding.layoutState.pbLoading.isVisible = false
+                    binding.layoutState.tvError.isVisible = false
                     binding.rvCategory.isVisible = true
                     result.payload?.let {
-                        categoryAdapter.setData(it)
+                        categoryAdapter.setItems(it)
                     }
                 },
                 doOnLoading = {
-                    binding.clCategoryTitle.isVisible = false
-                    binding.layoutStateC.root.isVisible = true
-                    binding.layoutStateC.pbLoading.isVisible = false
-                    binding.layoutStateC.tvError.isVisible = false
+                    binding.clSubheader.isVisible = false
+                    binding.layoutState.root.isVisible = true
+                    binding.layoutState.pbLoading.isVisible = false
+                    binding.layoutState.tvError.isVisible = false
                     binding.rvCategory.isVisible = false
                 },
                 doOnError = { err ->
-                    binding.layoutStateC.root.isVisible = true
-                    binding.layoutStateC.pbLoading.isVisible = false
-                    binding.layoutStateC.tvError.isVisible = true
-                    binding.layoutStateC.tvError.text = err.exception?.message.orEmpty()
+                    binding.layoutState.root.isVisible = true
+                    binding.layoutState.pbLoading.isVisible = false
+                    binding.layoutState.tvError.isVisible = true
+                    binding.layoutState.tvError.text = err.exception?.message.orEmpty()
                     binding.rvCategory.isVisible = false
                 }, doOnEmpty = {
-                    binding.layoutStateC.root.isVisible = true
-                    binding.layoutStateC.pbLoading.isVisible = false
-                    binding.layoutStateC.tvError.isVisible = true
-                    binding.layoutStateC.tvError.text = getString(R.string.no_data_text)
+                    binding.layoutState.root.isVisible = true
+                    binding.layoutState.pbLoading.isVisible = false
+                    binding.layoutState.tvError.isVisible = true
+                    binding.layoutState.tvError.text = getString(R.string.no_data_text)
                     binding.rvCategory.isVisible = false
                 }
             )

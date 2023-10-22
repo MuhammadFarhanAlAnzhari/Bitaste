@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import coil.load
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.zhari.bitaste.R
-import com.zhari.bitaste.data.local.AppDatabase
+import com.zhari.bitaste.data.local.database.AppDatabase
 import com.zhari.bitaste.data.local.datasource.CartDataSource
 import com.zhari.bitaste.data.local.datasource.CartDatabaseDataSource
 import com.zhari.bitaste.data.network.api.datasource.BitasteDataSourceImpl

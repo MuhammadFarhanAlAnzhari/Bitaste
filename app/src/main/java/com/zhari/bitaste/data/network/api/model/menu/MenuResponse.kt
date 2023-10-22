@@ -9,7 +9,7 @@ data class MenuResponse(
     @SerializedName("code")
     val code: Int?,
     @SerializedName("data")
-    val data: List<MenuItemResponse>?,
+    val data: List<MenuItemResponse>,
     @SerializedName("message")
     val message: String?,
     @SerializedName("status")
