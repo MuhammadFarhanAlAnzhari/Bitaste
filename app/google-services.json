@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "196846283830",
+    "project_id": "bitaste-b655c",
+    "storage_bucket": "bitaste-b655c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:196846283830:android:83b244a83eaa538b5c7c97",
+        "android_client_info": {
+          "package_name": "com.zhari.bitaste"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD71BDkQDWm7nz3JJYLfclLuvJjkjf_StM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
