@@ -1,15 +1,13 @@
-package com.zhari.bitaste.data.network.api.model.menu
+package com.zhari.bitaste.data.network.api.model.order
 
 
 import com.google.gson.annotations.SerializedName
 import androidx.annotation.Keep
 
 @Keep
-data class MenuResponse(
+data class OrderResponse(
     @SerializedName("code")
     val code: Int?,
-    @SerializedName("data")
-    val data: List<MenuItemResponse>,
     @SerializedName("message")
     val message: String?,
     @SerializedName("status")

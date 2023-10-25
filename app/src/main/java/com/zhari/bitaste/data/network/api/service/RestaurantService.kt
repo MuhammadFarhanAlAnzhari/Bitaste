@@ -1,7 +1,7 @@
 package com.zhari.bitaste.data.network.api.service
 
-import com.catnip.egroceries.data.network.api.model.order.OrderRequest
-import com.catnip.egroceries.data.network.api.model.order.OrderResponse
+import com.zhari.bitaste.data.network.api.model.order.OrderRequest
+import com.zhari.bitaste.data.network.api.model.order.OrderResponse
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.zhari.bitaste.BuildConfig
 import com.zhari.bitaste.data.network.api.model.menu.MenuResponse
@@ -18,6 +18,8 @@ import java.util.concurrent.TimeUnit
 interface RestaurantService {
     @GET("listmenu")
     suspend fun getMenus(@Query("c") category: String): MenuResponse
+    @GET("listmenu")
+    suspend fun getMenusList(): MenuResponse
     @GET("category")
     suspend fun getCategories(): CategoriesResponse
     @POST("order")

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/home_fragment">
+
+    <fragment
+        android:id="@+id/home_fragment"
+        android:name="com.zhari.bitaste.presentation.home.HomeFragment"
+        android:label="HomeFragment" />
+    <fragment
+        android:id="@+id/profile_fragment"
+        android:name="com.zhari.bitaste.presentation.profile.FragmentProfile"
+        android:label="FragmentProfile" />
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.zhari.bitaste.presentation.cart.CartFragment"
+        android:label="CartFragment" />
+</navigation>

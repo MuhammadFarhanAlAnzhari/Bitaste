@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="@string/cart"
-        android:id="@+id/cart_fragment"
+        android:id="@+id/cartFragment"
         android:icon="@drawable/ic_cart_buttom"/>
     <item
         android:layout_width="wrap_content"
