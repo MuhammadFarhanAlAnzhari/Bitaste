@@ -5,22 +5,14 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
-import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.zhari.bitaste.R
-import com.zhari.bitaste.data.local.database.AppDatabase
-import com.zhari.bitaste.data.local.datasource.CartDataSource
-import com.zhari.bitaste.data.local.datasource.CartDatabaseDataSource
-import com.zhari.bitaste.data.network.api.datasource.BitasteDataSourceImpl
-import com.zhari.bitaste.data.network.api.service.RestaurantService
-import com.zhari.bitaste.data.repository.CartRepository
-import com.zhari.bitaste.data.repository.CartRepositoryImpl
 import com.zhari.bitaste.databinding.ActivityDetailMenuBinding
 import com.zhari.bitaste.model.product.Menu
-import com.zhari.bitaste.utils.GenericViewModelFactory
 import com.zhari.bitaste.utils.proceedWhen
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class MenuDetailActivity : AppCompatActivity() {
 
@@ -29,17 +21,7 @@ class MenuDetailActivity : AppCompatActivity() {
             layoutInflater
         )
     }
-
-    private val viewModel: MenuDetailViewModel by viewModels {
-        val database = AppDatabase.getInstance(this)
-        val cartDao = database.cartDao()
-        val chucker = ChuckerInterceptor(this)
-        val service = RestaurantService.invoke(chucker)
-        val orderDataSource = BitasteDataSourceImpl(service)
-        val cartDataSource: CartDataSource = CartDatabaseDataSource(cartDao)
-        val cartRepo: CartRepository = CartRepositoryImpl(cartDataSource, orderDataSource)
-        GenericViewModelFactory.create(MenuDetailViewModel(intent?.extras, cartRepo))
-    }
+    private val viewModel: MenuDetailViewModel by viewModel { parametersOf(intent?.extras) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,11 +34,11 @@ class MenuDetailActivity : AppCompatActivity() {
     }
 
     private fun observeData() {
-        viewModel.priceLiveData.observe(this){
-            binding.btnAddToCart.text =  getString(R.string.add_to_cart, it.toInt())
+        viewModel.priceLiveData.observe(this) {
+            binding.btnAddToCart.text = getString(R.string.add_to_cart, it.toInt())
         }
 
-        viewModel.menuCountLiveData.observe(this){
+        viewModel.menuCountLiveData.observe(this) {
             binding.tvMenuCount.text = it.toString()
         }
 
@@ -65,9 +47,11 @@ class MenuDetailActivity : AppCompatActivity() {
                 doOnSuccess = {
                     Toast.makeText(this, "Added to basket", Toast.LENGTH_SHORT).show()
                     finish()
-                }, doOnError = {
+                },
+                doOnError = {
                     Toast.makeText(this, it.exception?.message.orEmpty(), Toast.LENGTH_SHORT).show()
-                })
+                }
+            )
         }
     }
 
@@ -84,7 +68,7 @@ class MenuDetailActivity : AppCompatActivity() {
         binding.ivMinus.setOnClickListener {
             viewModel.minus()
         }
-        binding.btnAddToCart.setOnClickListener{
+        binding.btnAddToCart.setOnClickListener {
             viewModel.addToCart()
         }
     }

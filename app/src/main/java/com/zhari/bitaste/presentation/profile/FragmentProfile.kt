@@ -1,32 +1,27 @@
 package com.zhari.bitaste.presentation.profile
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.zhari.bitaste.databinding.FragmentProfileBinding
-import android.content.Intent
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.zhari.bitaste.R
 import com.zhari.bitaste.data.network.firebase.auth.FirebaseAuthDataSourceImpl
 import com.zhari.bitaste.data.repository.UserRepositoryImpl
+import com.zhari.bitaste.databinding.FragmentProfileBinding
 import com.zhari.bitaste.presentation.login.LoginActivity
-import com.zhari.bitaste.utils.GenericViewModelFactory
 import com.zhari.bitaste.utils.proceedWhen
-
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FragmentProfile : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
-
-    private val viewModel: ProfileViewModel by viewModels {
-        GenericViewModelFactory.create(createViewModel())
-    }
+    private val viewModel: ProfileViewModel by viewModel()
 
     private fun createViewModel(): ProfileViewModel {
         val firebaseAuth = FirebaseAuth.getInstance()
@@ -38,7 +33,7 @@ class FragmentProfile : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?,
+        savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentProfileBinding.inflate(
@@ -64,7 +59,7 @@ class FragmentProfile : Fragment() {
     }
 
     private fun observeData() {
-        viewModel.updateProfileResult.observe(viewLifecycleOwner){
+        viewModel.updateProfileResult.observe(viewLifecycleOwner) {
             it.proceedWhen(
                 doOnSuccess = {
                     binding.pbChangeProfileLoading.isVisible = false
@@ -90,7 +85,7 @@ class FragmentProfile : Fragment() {
     }
 
     private fun setClickListeners() {
-        binding.btnChangeProfile.setOnClickListener{
+        binding.btnChangeProfile.setOnClickListener {
             changeProfileData()
         }
         binding.btnChangePassword.setOnClickListener {
@@ -103,18 +98,19 @@ class FragmentProfile : Fragment() {
 
     private fun doLogout() {
         AlertDialog.Builder(requireContext())
-            .setMessage("Apakah kamu ingin keluar? " +
-                    "${viewModel.getCurrentUser()?.fullName}")
-            .setPositiveButton("Ya"){_,_ ->
+            .setMessage(
+                "Apakah kamu ingin keluar? " +
+                    "${viewModel.getCurrentUser()?.fullName}"
+            )
+            .setPositiveButton("Ya") { _, _ ->
                 viewModel.doLogout()
                 navigateToLogin()
-            }.setNegativeButton("Tidak"){_,_ ->
-
+            }.setNegativeButton("Tidak") { _, _ ->
             }.create().show()
     }
 
     private fun navigateToLogin() {
-        requireActivity().run{
+        requireActivity().run {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
@@ -123,16 +119,17 @@ class FragmentProfile : Fragment() {
     private fun requestChangePassword() {
         viewModel.createChangePasswordReq()
         AlertDialog.Builder(requireContext())
-            .setMessage("A password change request will be sent to the email: " +
-                    "${viewModel.getCurrentUser()?.email}")
-            .setPositiveButton("Ok"){_,_ ->
-
+            .setMessage(
+                "A password change request will be sent to the email: " +
+                    "${viewModel.getCurrentUser()?.email}"
+            )
+            .setPositiveButton("Ok") { _, _ ->
             }.create().show()
     }
 
     private fun changeProfileData() {
         val fullName = binding.layoutForm.etName.text.toString().trim()
-        if (isFormValid()){
+        if (isFormValid()) {
             viewModel.updateProfile(fullName)
         }
     }
@@ -140,23 +137,24 @@ class FragmentProfile : Fragment() {
     private fun isFormValid(): Boolean {
         val currentName = viewModel.getCurrentUser()?.fullName
         val newName = binding.layoutForm.etName.text.toString().trim()
-        return checkNameValidation(currentName,newName)
+        return checkNameValidation(currentName, newName)
     }
 
     private fun checkNameValidation(
         currentName: String?,
         newName: String
     ): Boolean {
-        return if(newName.isEmpty()){
+        return if (newName.isEmpty()) {
             binding.layoutForm.tilName.isErrorEnabled = true
             binding.layoutForm.tilName.error = getString(
-                R.string.text_error_name_cannot_empty)
+                R.string.text_error_name_cannot_empty
+            )
             false
-        } else if (newName == currentName){
+        } else if (newName == currentName) {
             binding.layoutForm.tilName.isErrorEnabled = true
             binding.layoutForm.tilName.error = getString(R.string.text_error_new_name_must_be_different)
             false
-        } else{
+        } else {
             binding.layoutForm.tilName.isErrorEnabled = false
             true
         }

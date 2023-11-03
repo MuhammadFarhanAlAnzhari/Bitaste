@@ -1,10 +1,10 @@
 package com.zhari.bitaste.data.network.api.datasource
 
-import com.zhari.bitaste.data.network.api.model.order.OrderResponse
-import com.zhari.bitaste.data.network.api.model.menu.MenuResponse
-import com.zhari.bitaste.data.network.api.service.RestaurantService
 import com.zhari.bitaste.data.network.api.model.category.CategoriesResponse
+import com.zhari.bitaste.data.network.api.model.menu.MenuResponse
 import com.zhari.bitaste.data.network.api.model.order.OrderRequest
+import com.zhari.bitaste.data.network.api.model.order.OrderResponse
+import com.zhari.bitaste.data.network.api.service.RestaurantService
 
 interface BitasteDataSource {
     suspend fun getProducts(category: String?): MenuResponse?
@@ -29,4 +29,3 @@ class BitasteDataSourceImpl(private val service: RestaurantService) : BitasteDat
         return service.getMenusList()
     }
 }
-

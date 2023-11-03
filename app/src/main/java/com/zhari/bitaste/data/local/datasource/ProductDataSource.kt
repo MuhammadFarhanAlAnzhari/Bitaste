@@ -10,10 +10,9 @@ interface ProductDataSource {
     suspend fun insertProducts(product: List<MenuEntity>)
     suspend fun deleteProduct(product: MenuEntity): Int
     suspend fun updateProduct(product: MenuEntity): Int
-
 }
 
-class ProductDatabaseDataSource(private val productDao : MenuDao) : ProductDataSource {
+class ProductDatabaseDataSource(private val productDao: MenuDao) : ProductDataSource {
     override fun getAllProducts(): Flow<List<MenuEntity>> {
         return productDao.getAllProducts()
     }
@@ -33,5 +32,4 @@ class ProductDatabaseDataSource(private val productDao : MenuDao) : ProductDataS
     override suspend fun updateProduct(product: MenuEntity): Int {
         return productDao.updateProduct(product)
     }
-
 }

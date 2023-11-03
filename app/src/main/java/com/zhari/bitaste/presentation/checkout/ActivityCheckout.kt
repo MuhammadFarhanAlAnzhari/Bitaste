@@ -1,46 +1,18 @@
 package com.zhari.bitaste.presentation.checkout
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import com.chuckerteam.chucker.api.ChuckerInterceptor
-import com.google.firebase.auth.FirebaseAuth
 import com.zhari.bitaste.R
-import com.zhari.bitaste.data.local.database.AppDatabase
-import com.zhari.bitaste.data.local.datasource.CartDataSource
-import com.zhari.bitaste.data.local.datasource.CartDatabaseDataSource
-import com.zhari.bitaste.data.network.api.datasource.BitasteDataSourceImpl
-import com.zhari.bitaste.data.network.api.service.RestaurantService
-import com.zhari.bitaste.data.network.firebase.auth.FirebaseAuthDataSourceImpl
-import com.zhari.bitaste.data.repository.CartRepository
-import com.zhari.bitaste.data.repository.CartRepositoryImpl
-import com.zhari.bitaste.data.repository.UserRepository
-import com.zhari.bitaste.data.repository.UserRepositoryImpl
 import com.zhari.bitaste.databinding.ActivityCheckoutBinding
 import com.zhari.bitaste.presentation.cart.CartListAdapter
-import com.zhari.bitaste.utils.GenericViewModelFactory
 import com.zhari.bitaste.utils.proceedWhen
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ActivityCheckout : AppCompatActivity() {
-
-    private val viewModel: CheckoutViewModel by viewModels {
-        val database = AppDatabase.getInstance(this)
-        val firebaseAuth = FirebaseAuth.getInstance()
-        val cartDao = database.cartDao()
-        val chucker = ChuckerInterceptor(this)
-        val service = RestaurantService.invoke(chucker)
-        val orderDataSource = BitasteDataSourceImpl(service)
-        val cartDataSource: CartDataSource = CartDatabaseDataSource(cartDao)
-        val cartRepo: CartRepository = CartRepositoryImpl(cartDataSource, orderDataSource)
-        val userDataSource = FirebaseAuthDataSourceImpl(firebaseAuth)
-        val userRepo: UserRepository = UserRepositoryImpl(userDataSource)
-        GenericViewModelFactory.create(CheckoutViewModel(
-            cartRepo, userRepo
-        ))
-    }
+    private val viewModel: CheckoutViewModel by viewModel()
 
     private val binding: ActivityCheckoutBinding by lazy {
         ActivityCheckoutBinding.inflate(
@@ -63,38 +35,30 @@ class ActivityCheckout : AppCompatActivity() {
     }
 
     private fun observeOrderResult() {
-        viewModel.orderResult.observe(this){
-            it.proceedWhen (
-                doOnSuccess = {
-                    dialogOrder()
-                    deleteAllCart()
+        viewModel.orderResult.observe(this) {
+            it.proceedWhen(doOnSuccess = {
+                binding.layoutState.root.isVisible = false
+                binding.layoutState.pbLoading.isVisible = false
+                dialogOrder()
+            }, doOnError = {
+                    binding.layoutState.root.isVisible = false
                     binding.layoutState.pbLoading.isVisible = false
-                    binding.layoutState.tvError.isVisible = false
-                },
-                doOnError = {
-                    Toast.makeText(
-                        this,
-                        "Pesanan gagal dibuat",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    binding.layoutState.pbLoading.isVisible = true
-                    binding.layoutState.tvError.isVisible = false
-                },
-                doOnLoading = {
-                    binding.layoutState.pbLoading.isVisible = true
-                    binding.layoutState.tvError.isVisible = false
+                    Toast.makeText(this, "Checkout Error", Toast.LENGTH_SHORT).show()
+                }, doOnLoading = {
                     binding.layoutState.root.isVisible = true
-                    binding.svCheckoutController.isVisible = false
-                }
-            )
+                    binding.layoutState.pbLoading.isVisible = true
+                })
         }
     }
 
     private fun dialogOrder() {
         AlertDialog.Builder(this)
             .setMessage("Pesanan berhasil dibuat")
-            .setPositiveButton("Ok") { _, _ -> finish() }
-            .show()
+            .setPositiveButton("Ok") { _, _ ->
+                viewModel.deleteAll()
+                finish()
+            }
+            .create().show()
     }
 
     private fun orderClickListener() {

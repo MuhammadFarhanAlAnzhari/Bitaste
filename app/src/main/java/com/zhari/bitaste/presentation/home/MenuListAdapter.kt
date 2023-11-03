@@ -25,15 +25,18 @@ class MenuListAdapter(
 ) :
     RecyclerView.Adapter<ViewHolder>() {
 
-    private val dataDiffer = AsyncListDiffer(this, object : DiffUtil.ItemCallback<Menu>() {
-        override fun areItemsTheSame(oldItem: Menu, newItem: Menu): Boolean {
-            return oldItem.id == newItem.id
-        }
+    private val dataDiffer = AsyncListDiffer(
+        this,
+        object : DiffUtil.ItemCallback<Menu>() {
+            override fun areItemsTheSame(oldItem: Menu, newItem: Menu): Boolean {
+                return oldItem.id == newItem.id
+            }
 
-        override fun areContentsTheSame(oldItem: Menu, newItem: Menu): Boolean {
-            return oldItem.hashCode() == newItem.hashCode()
+            override fun areContentsTheSame(oldItem: Menu, newItem: Menu): Boolean {
+                return oldItem.hashCode() == newItem.hashCode()
+            }
         }
-    })
+    )
 
     fun submitData(list: List<Menu>) = dataDiffer.submitList(list)
 
@@ -56,7 +59,9 @@ class MenuListAdapter(
                 ItemMenuGridBinding.inflate(
                     LayoutInflater.from(
                         parent.context
-                    ), parent, false
+                    ),
+                    parent,
+                    false
                 ),
                 onItemClicked
             )
@@ -93,7 +98,7 @@ class GridPlanetItemViewHolder(
         }
         binding.ivMenu.load(item.imageUrl)
         binding.tvNamaMakanan.text = item.name
-        binding.tvPriceFood.text =item.formattedPrice
+        binding.tvPriceFood.text = item.formattedPrice
     }
 }
 

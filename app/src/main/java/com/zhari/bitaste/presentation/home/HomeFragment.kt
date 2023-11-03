@@ -1,70 +1,43 @@
 package com.zhari.bitaste.presentation.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.chuckerteam.chucker.api.ChuckerInterceptor
-import com.google.firebase.auth.FirebaseAuth
 import com.zhari.bitaste.R
-import com.zhari.bitaste.data.local.datastore.UserPreferenceDataSourceImpl
-import com.zhari.bitaste.data.local.datastore.appDataStore
-import com.zhari.bitaste.data.network.api.datasource.BitasteDataSourceImpl
-import com.zhari.bitaste.data.network.api.service.RestaurantService
-import com.zhari.bitaste.data.network.firebase.auth.FirebaseAuthDataSourceImpl
-import com.zhari.bitaste.data.repository.MenuRepository
-import com.zhari.bitaste.data.repository.MenuRepositoryImpl
-import com.zhari.bitaste.data.repository.UserRepository
-import com.zhari.bitaste.data.repository.UserRepositoryImpl
 import com.zhari.bitaste.databinding.FragmentHomeBinding
 import com.zhari.bitaste.model.product.Menu
 import com.zhari.bitaste.presentation.detailmenu.MenuDetailActivity
 import com.zhari.bitaste.presentation.home.adapter.AdapterLayout
 import com.zhari.bitaste.presentation.home.adapter.CategoryAdapter
 import com.zhari.bitaste.presentation.main.MainViewModel
-import com.zhari.bitaste.utils.GenericViewModelFactory
-import com.zhari.bitaste.utils.PreferenceDataStoreHelperImpl
 import com.zhari.bitaste.utils.proceedWhen
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
 
+    private val homeViewModel: HomeViewModel by viewModel()
+
+    private val mainViewModel: MainViewModel by viewModel()
+
     private val menuAdapter: MenuListAdapter by lazy {
-        MenuListAdapter(AdapterLayout.LINEAR){
-                menu: Menu -> navigateToDetail(menu)
+        MenuListAdapter(AdapterLayout.LINEAR) {
+                menu: Menu ->
+            navigateToDetail(menu)
         }
     }
 
     private val categoryAdapter: CategoryAdapter by lazy {
-        CategoryAdapter{
-            homeViewModel.getMenus(it.slug)
+        CategoryAdapter {
+            homeViewModel.getMenus(it.catName.toLowerCase())
         }
-    }
-
-    private val viewModel: MainViewModel by viewModels{
-        val dataStore =  this.requireContext().appDataStore
-        val dataStoreHelper = PreferenceDataStoreHelperImpl(dataStore)
-        val userPreferenceDataSource = UserPreferenceDataSourceImpl(dataStoreHelper)
-        GenericViewModelFactory.create(MainViewModel(userPreferenceDataSource))
-    }
-
-
-    private val homeViewModel: HomeViewModel by viewModels {
-        val chucker = ChuckerInterceptor(requireContext().applicationContext)
-        val service = RestaurantService.invoke(chucker)
-        val firebaseAuth = FirebaseAuth.getInstance()
-        val menuDataSource = BitasteDataSourceImpl(service)
-        val userDataSource = FirebaseAuthDataSourceImpl(firebaseAuth)
-        val menuRepo: MenuRepository = MenuRepositoryImpl(menuDataSource)
-        val userRepo: UserRepository = UserRepositoryImpl(userDataSource)
-        GenericViewModelFactory.create(HomeViewModel(menuRepo,userRepo))
     }
 
     private fun navigateToDetail(menu: Menu) {
@@ -72,10 +45,11 @@ class HomeFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentHomeBinding.inflate(inflater,container,false)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -92,7 +66,7 @@ class HomeFragment : Fragment() {
         val fullName = homeViewModel.getCurrentUser()?.fullName
         val split = fullName?.split(" ")
         val firstName = split?.get(0)
-        binding.tvName.setText("Halo, ${firstName}!")
+        binding.tvName.setText("Halo, $firstName!")
     }
 
     private fun getData() {
@@ -102,7 +76,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setObserveDataMenu() {
-        homeViewModel.menuList.observe(viewLifecycleOwner){
+        homeViewModel.menuList.observe(viewLifecycleOwner) {
             it.proceedWhen(
                 doOnSuccess = { result ->
                     binding.clSubheader.isVisible = true
@@ -127,7 +101,8 @@ class HomeFragment : Fragment() {
                     binding.layoutState.tvError.isVisible = true
                     binding.layoutState.tvError.text = err.exception?.message.orEmpty()
                     binding.rvMenu.isVisible = false
-                }, doOnEmpty = {
+                },
+                doOnEmpty = {
                     binding.layoutState.root.isVisible = true
                     binding.layoutState.pbLoading.isVisible = false
                     binding.layoutState.tvError.isVisible = true
@@ -139,23 +114,23 @@ class HomeFragment : Fragment() {
     }
 
     private fun setRecyclerViewMenu() {
-        val span = if(menuAdapter.adapterLayoutMode == AdapterLayout.LINEAR) 1 else 2
+        val span = if (menuAdapter.adapterLayoutMode == AdapterLayout.LINEAR) 1 else 2
         binding.rvMenu.apply {
-            layoutManager = GridLayoutManager(requireContext(),span)
+            layoutManager = GridLayoutManager(requireContext(), span)
             adapter = this@HomeFragment.menuAdapter
         }
         setObserveDataMenu()
     }
 
     private fun setupSwitch() {
-        viewModel.userGridModeLiveData.observe(viewLifecycleOwner){
+        mainViewModel.userGridModeLiveData.observe(viewLifecycleOwner) {
             binding.listSwitch.isChecked = it
         }
 
         binding.listSwitch.setOnCheckedChangeListener { _, isUsingLinear ->
-            viewModel.setGridModePref(isUsingLinear)
+            mainViewModel.setGridModePref(isUsingLinear)
             (binding.rvMenu.layoutManager as GridLayoutManager).spanCount = if (isUsingLinear) 2 else 1
-            menuAdapter.adapterLayoutMode = if(isUsingLinear) AdapterLayout.GRID else AdapterLayout.LINEAR
+            menuAdapter.adapterLayoutMode = if (isUsingLinear) AdapterLayout.GRID else AdapterLayout.LINEAR
             setObserveDataMenu()
         }
     }
@@ -169,7 +144,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setObserveDataCategory() {
-        homeViewModel.categories.observe(viewLifecycleOwner){
+        homeViewModel.categories.observe(viewLifecycleOwner) {
             it.proceedWhen(
                 doOnSuccess = { result ->
                     binding.clSubheader.isVisible = true
@@ -194,7 +169,8 @@ class HomeFragment : Fragment() {
                     binding.layoutState.tvError.isVisible = true
                     binding.layoutState.tvError.text = err.exception?.message.orEmpty()
                     binding.rvCategory.isVisible = false
-                }, doOnEmpty = {
+                },
+                doOnEmpty = {
                     binding.layoutState.root.isVisible = true
                     binding.layoutState.pbLoading.isVisible = false
                     binding.layoutState.tvError.isVisible = true

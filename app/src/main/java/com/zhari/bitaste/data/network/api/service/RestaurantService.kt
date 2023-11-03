@@ -1,11 +1,11 @@
 package com.zhari.bitaste.data.network.api.service
 
-import com.zhari.bitaste.data.network.api.model.order.OrderRequest
-import com.zhari.bitaste.data.network.api.model.order.OrderResponse
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.zhari.bitaste.BuildConfig
-import com.zhari.bitaste.data.network.api.model.menu.MenuResponse
 import com.zhari.bitaste.data.network.api.model.category.CategoriesResponse
+import com.zhari.bitaste.data.network.api.model.menu.MenuResponse
+import com.zhari.bitaste.data.network.api.model.order.OrderRequest
+import com.zhari.bitaste.data.network.api.model.order.OrderResponse
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -14,17 +14,18 @@ import retrofit2.http.POST
 import retrofit2.http.Query
 import java.util.concurrent.TimeUnit
 
-
 interface RestaurantService {
     @GET("listmenu")
     suspend fun getMenus(@Query("c") category: String): MenuResponse
+
     @GET("listmenu")
     suspend fun getMenusList(): MenuResponse
+
     @GET("category")
     suspend fun getCategories(): CategoriesResponse
+
     @POST("order")
     suspend fun createOrder(orderRequest: OrderRequest): OrderResponse
-
 
     companion object {
         @JvmStatic
@@ -37,11 +38,13 @@ interface RestaurantService {
             val retrofit = Retrofit.Builder()
                 .baseUrl(BuildConfig.BASE_URL)
                 .addConverterFactory(
-                    GsonConverterFactory.create())
+                    GsonConverterFactory.create()
+                )
                 .client(okHttpClient)
                 .build()
             return retrofit.create(
-                RestaurantService::class.java)
+                RestaurantService::class.java
+            )
         }
     }
 }

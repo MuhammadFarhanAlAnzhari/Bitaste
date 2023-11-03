@@ -2,26 +2,19 @@ package com.zhari.bitaste.presentation.cart
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
-import androidx.fragment.app.viewModels
-import com.chuckerteam.chucker.api.ChuckerInterceptor
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.zhari.bitaste.R
-import com.zhari.bitaste.data.local.database.AppDatabase
-import com.zhari.bitaste.data.local.datasource.CartDataSource
-import com.zhari.bitaste.data.local.datasource.CartDatabaseDataSource
-import com.zhari.bitaste.data.network.api.datasource.BitasteDataSourceImpl
-import com.zhari.bitaste.data.network.api.service.RestaurantService
-import com.zhari.bitaste.data.repository.CartRepository
-import com.zhari.bitaste.data.repository.CartRepositoryImpl
 import com.zhari.bitaste.databinding.FragmentCartBinding
 import com.zhari.bitaste.model.Cart
 import com.zhari.bitaste.presentation.checkout.ActivityCheckout
-import com.zhari.bitaste.utils.GenericViewModelFactory
 import com.zhari.bitaste.utils.proceedWhen
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CartFragment : Fragment() {
 
@@ -30,17 +23,16 @@ class CartFragment : Fragment() {
     private val cartListAdapter: CartListAdapter by lazy {
         CartListAdapter(object : CartListener {
             override fun onCartClicked(item: Cart) {
-
             }
 
             override fun onPlusTotalItemCartClicked(
-                cart: Cart,
+                cart: Cart
             ) {
                 viewModel.increaseCart(cart)
             }
 
             override fun onMinusTotalItemCartClicked(
-                cart: Cart,
+                cart: Cart
             ) {
                 viewModel.decreaseCart(cart)
             }
@@ -50,28 +42,18 @@ class CartFragment : Fragment() {
             }
 
             override fun onUserDoneEditingNotes(
-                newCart: Cart,
+                newCart: Cart
             ) {
                 viewModel.updateNotes(newCart)
             }
         })
     }
-
-    private val viewModel: CartViewModel by viewModels {
-        val database = AppDatabase.getInstance(requireContext())
-        val cartDao = database.cartDao()
-        val chucker = ChuckerInterceptor(requireContext().applicationContext)
-        val service = RestaurantService.invoke(chucker)
-        val orderDataSource = BitasteDataSourceImpl(service)
-        val cartDataSource: CartDataSource = CartDatabaseDataSource(cartDao)
-        val cartRepo: CartRepository = CartRepositoryImpl(cartDataSource, orderDataSource)
-        GenericViewModelFactory.create(CartViewModel(cartRepo))
-    }
+    private val viewModel: CartViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?,
+        savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentCartBinding.inflate(
@@ -84,7 +66,7 @@ class CartFragment : Fragment() {
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?,
+        savedInstanceState: Bundle?
     ) {
         super.onViewCreated(
             view,
@@ -173,6 +155,10 @@ class CartFragment : Fragment() {
     }
 
     private fun setupCartList() {
-        binding.rvMenuCart.adapter = cartListAdapter
+//        binding.rvMenuCart.adapter = cartListAdapter
+        binding.rvMenuCart.apply {
+            layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+            adapter = cartListAdapter
+        }
     }
 }

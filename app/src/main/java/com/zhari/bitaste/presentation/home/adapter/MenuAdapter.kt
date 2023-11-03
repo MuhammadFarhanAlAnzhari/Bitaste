@@ -18,26 +18,28 @@ enum class MenuAdapter {
 
 class MenuListAdapter(
     private var adapterLayoutMode: MenuAdapter,
-    private val onItemClicked: (Menu)  -> Unit
+    private val onItemClicked: (Menu) -> Unit
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val dataDiffer = AsyncListDiffer(this, object : DiffUtil.ItemCallback<Menu>() {
-        override fun areItemsTheSame(oldItem: Menu, newItem: Menu): Boolean {
-            return oldItem.id == newItem.id
-        }
+    private val dataDiffer = AsyncListDiffer(
+        this,
+        object : DiffUtil.ItemCallback<Menu>() {
+            override fun areItemsTheSame(oldItem: Menu, newItem: Menu): Boolean {
+                return oldItem.id == newItem.id
+            }
 
-        override fun areContentsTheSame(oldItem: Menu, newItem: Menu): Boolean {
-            return oldItem.hashCode() == newItem.hashCode()
+            override fun areContentsTheSame(oldItem: Menu, newItem: Menu): Boolean {
+                return oldItem.hashCode() == newItem.hashCode()
+            }
         }
-    })
+    )
 
     fun submitData(list: List<Menu>) = dataDiffer.submitList(list)
 
     fun setAdapterLayoutMode(mode: MenuAdapter) {
         adapterLayoutMode = mode
         notifyDataSetChanged()
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -99,4 +101,3 @@ class ListMenuItemViewHolder(
         binding.tvMenuName.text = item.name
     }
 }
-

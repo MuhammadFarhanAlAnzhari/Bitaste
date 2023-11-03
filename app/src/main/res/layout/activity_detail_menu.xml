@@ -50,33 +50,12 @@
 
   </com.google.android.material.card.MaterialCardView>
 
-  <com.google.android.material.card.MaterialCardView
-      android:layout_width="180dp"
-      android:layout_height="0dp"
-      android:layout_marginTop="110dp"
-      app:cardCornerRadius="180dp"
-      app:cardElevation="50dp"
-      app:layout_constraintDimensionRatio="1:1"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHeight_percent="0.4"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent">
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/iv_rectangle_img"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        tools:src="@tools:sample/avatars" />
-
-  </com.google.android.material.card.MaterialCardView>
-
   <com.google.android.material.textview.MaterialTextView
       android:id="@+id/tv_food_name_detail"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginStart="26dp"
-      android:layout_marginTop="302dp"
+      android:layout_marginTop="240dp"
       tools:text="@string/nama_makanan"
       android:textColor="@color/ungu_tua"
       android:textSize="22sp"
@@ -89,33 +68,12 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginStart="26dp"
-      android:layout_marginTop="328dp"
+      android:layout_marginTop="270dp"
       android:text="@string/rp_50_000"
       android:textColor="@color/orange_tua"
       android:textSize="22sp"
       android:textStyle="bold"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
-
-  <com.google.android.material.imageview.ShapeableImageView
-      android:layout_width="80dp"
-      android:layout_height="80dp"
-      android:layout_marginTop="286dp"
-      android:layout_marginEnd="20dp"
-      android:src="@drawable/ic_rating_detail"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
-
-  <com.google.android.material.textview.MaterialTextView
-      android:id="@+id/tv_rating_detail"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="316dp"
-      android:layout_marginEnd="36dp"
-      tools:text="@string/_4_8"
-      android:textColor="@color/ungu_tua"
-      android:textSize="16sp"
-      app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
 
   <com.google.android.material.imageview.ShapeableImageView
@@ -131,7 +89,7 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginStart="46dp"
-      android:layout_marginTop="362dp"
+      android:layout_marginTop="302dp"
       tools:text="@string/open"
       android:textColor="@color/ungu_tua"
       app:layout_constraintStart_toStartOf="parent"
@@ -183,25 +141,14 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginStart="10dp"
-          android:layout_marginTop="14dp"
+          android:layout_marginTop="30dp"
           tools:text="@string/location"
           android:textColor="@color/ungu_muda"
-          android:textSize="20sp"
+          android:textSize="10sp"
           android:textStyle="bold|normal"
           app:layout_constraintStart_toEndOf="@id/iv_map"
           app:layout_constraintTop_toTopOf="parent" />
 
-      <com.google.android.material.textview.MaterialTextView
-          android:id="@+id/data_location"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="10dp"
-          tools:text="@string/see_location"
-          android:textColor="@color/orange_muda"
-          android:textSize="16sp"
-          android:textStyle="normal"
-          app:layout_constraintStart_toEndOf="@id/iv_map"
-          app:layout_constraintTop_toBottomOf="@id/tv_location" />
     </androidx.constraintlayout.widget.ConstraintLayout>
   </com.google.android.material.card.MaterialCardView>
 

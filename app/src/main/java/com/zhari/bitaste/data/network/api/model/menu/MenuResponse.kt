@@ -1,8 +1,7 @@
 package com.zhari.bitaste.data.network.api.model.menu
 
-
-import com.google.gson.annotations.SerializedName
 import androidx.annotation.Keep
+import com.google.gson.annotations.SerializedName
 
 @Keep
 data class MenuResponse(

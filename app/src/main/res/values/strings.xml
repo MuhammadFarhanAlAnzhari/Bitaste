@@ -82,4 +82,6 @@
     <string name="_0">0</string>
     <string name="catatan">Catatan</string>
     <string name="total_qty">x%s</string>
+    <string name="total_quantity">x%s</string>
+
 </resources>
