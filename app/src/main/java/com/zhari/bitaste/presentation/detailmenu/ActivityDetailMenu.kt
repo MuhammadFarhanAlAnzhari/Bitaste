@@ -2,8 +2,8 @@ package com.zhari.bitaste.presentation.detailmenu
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.zhari.bitaste.R
 import com.zhari.bitaste.model.product.Menu
 

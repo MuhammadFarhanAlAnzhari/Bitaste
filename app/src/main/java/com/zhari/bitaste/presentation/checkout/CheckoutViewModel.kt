@@ -20,23 +20,22 @@ class CheckoutViewModel(
 
     private val _orderResult = MutableLiveData<ResultWrapper<Boolean>>()
 
-    val orderResult : LiveData<ResultWrapper<Boolean>>
+    val orderResult: LiveData<ResultWrapper<Boolean>>
         get() = _orderResult
 
-
-    fun deleteAll(){
+    fun deleteAll() {
         viewModelScope.launch(Dispatchers.IO) {
             cartRepository.deleteAll()
         }
     }
 
-    fun createOrder(){
+    fun createOrder() {
         viewModelScope.launch(Dispatchers.IO) {
             val carts = cartList.value?.payload?.first ?: return@launch
-            cartRepository.order(carts).collect{
+            cartRepository.order(carts).collect {
                 _orderResult.postValue(it)
             }
         }
     }
-    fun getCurrentUser() = userRepository.getCurrentUser()
+//    fun getCurrentUser() = userRepository.getCurrentUser()
 }

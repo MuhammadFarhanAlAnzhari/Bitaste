@@ -47,7 +47,7 @@ class CategoryAdapter(private val itemClick: (Category) -> Unit) :
 
         fun bindView(item: Category) {
             with(item) {
-                binding.ivCategoryItem.load(item.catImgSrc){
+                binding.ivCategoryItem.load(item.catImgSrc) {
                     crossfade(true)
                 }
                 binding.tvCategoryName.text = item.catName
@@ -55,5 +55,4 @@ class CategoryAdapter(private val itemClick: (Category) -> Unit) :
             }
         }
     }
-
 }

@@ -1,14 +1,12 @@
 package com.zhari.bitaste.data.repository
 
-
-
-import com.zhari.bitaste.data.network.api.model.order.OrderItemRequest
-import com.zhari.bitaste.data.network.api.model.order.OrderRequest
 import com.zhari.bitaste.data.local.datasource.CartDataSource
 import com.zhari.bitaste.data.local.entity.CartEntity
 import com.zhari.bitaste.data.local.mapper.toCartEntity
 import com.zhari.bitaste.data.local.mapper.toCartList
 import com.zhari.bitaste.data.network.api.datasource.BitasteDataSource
+import com.zhari.bitaste.data.network.api.model.order.OrderItemRequest
+import com.zhari.bitaste.data.network.api.model.order.OrderRequest
 import com.zhari.bitaste.model.Cart
 import com.zhari.bitaste.model.product.Menu
 import com.zhari.bitaste.utils.ResultWrapper
@@ -28,7 +26,7 @@ interface CartRepository {
     suspend fun setCartNotes(item: Cart): Flow<ResultWrapper<Boolean>>
     suspend fun deleteCart(item: Cart): Flow<ResultWrapper<Boolean>>
     suspend fun deleteAll()
-    suspend fun order(items: List<Cart>) : Flow<ResultWrapper<Boolean>>
+    suspend fun order(items: List<Cart>): Flow<ResultWrapper<Boolean>>
 }
 
 class CartRepositoryImpl(
@@ -49,10 +47,11 @@ class CartRepositoryImpl(
                     Pair(result, totalPrice)
                 }
             }.map {
-                if (it.payload?.first?.isEmpty() == true)
+                if (it.payload?.first?.isEmpty() == true) {
                     ResultWrapper.Empty(it.payload)
-                else
+                } else {
                     it
+                }
             }
             .onStart {
                 emit(ResultWrapper.Loading())
@@ -114,7 +113,7 @@ class CartRepositoryImpl(
 
     override suspend fun order(items: List<Cart>): Flow<ResultWrapper<Boolean>> {
         return proceedFlow {
-            val orderItems = items.map{
+            val orderItems = items.map {
                 OrderItemRequest(it.itemNotes, it.menuPrice.toInt(), it.menuName, it.itemQuantity)
             }
 

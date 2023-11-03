@@ -1,9 +1,9 @@
 package com.zhari.bitaste.data.repository
 
 import com.zhari.bitaste.data.network.api.datasource.BitasteDataSource
+import com.zhari.bitaste.data.network.api.model.category.toCategoryList
 import com.zhari.bitaste.data.network.api.model.menu.toMenuList
 import com.zhari.bitaste.model.category.Category
-import com.zhari.bitaste.data.network.api.model.category.toCategoryList
 import com.zhari.bitaste.model.product.Menu
 import com.zhari.bitaste.utils.ResultWrapper
 import com.zhari.bitaste.utils.proceedFlow

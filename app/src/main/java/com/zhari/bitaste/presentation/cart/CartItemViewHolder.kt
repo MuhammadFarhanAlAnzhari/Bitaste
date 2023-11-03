@@ -3,15 +3,15 @@ package com.zhari.bitaste.presentation.cart
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.zhari.bitaste.R
-import com.zhari.bitaste.utils.doneEditing
 import com.zhari.bitaste.core.ViewHolderBinder
 import com.zhari.bitaste.databinding.CartListItemBinding
 import com.zhari.bitaste.databinding.CheckoutListItemBinding
 import com.zhari.bitaste.model.Cart
+import com.zhari.bitaste.utils.doneEditing
 
 class CartItemViewHolder(
     private val binding: CartListItemBinding,
-    private val cartListener: CartListener?,
+    private val cartListener: CartListener?
 ) : RecyclerView.ViewHolder(binding.root), ViewHolderBinder<Cart> {
 
     override fun bind(item: Cart) {
@@ -42,17 +42,16 @@ class CartItemViewHolder(
 
     private fun setCartData(item: Cart) {
         binding.apply {
-            ivMenuImg.load(item.menuImgUrl){crossfade(true)}
+            ivMenuImg.load(item.menuImgUrl) { crossfade(true) }
             tvMenuName.text = item.menuName
             tvMenuPrice.text = String.format("Rp. %,.0f", (item.menuPrice * item.itemQuantity))
             tvAmount.text = item.itemQuantity.toString()
         }
     }
-
 }
 
 class CheckoutViewHolder(
-    private val binding: CheckoutListItemBinding,
+    private val binding: CheckoutListItemBinding
 ) : RecyclerView.ViewHolder(binding.root), ViewHolderBinder<Cart> {
     override fun bind(item: Cart) {
         setCartData(item)
@@ -79,7 +78,7 @@ class CheckoutViewHolder(
     }
 }
 
-interface CartListener{
+interface CartListener {
     fun onCartClicked(item: Cart)
     fun onPlusTotalItemCartClicked(cart: Cart)
     fun onMinusTotalItemCartClicked(cart: Cart)
