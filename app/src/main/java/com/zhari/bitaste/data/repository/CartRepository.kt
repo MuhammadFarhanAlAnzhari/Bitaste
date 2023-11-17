@@ -14,6 +14,7 @@ import com.zhari.bitaste.utils.proceed
 import com.zhari.bitaste.utils.proceedFlow
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
@@ -52,8 +53,9 @@ class CartRepositoryImpl(
                 } else {
                     it
                 }
-            }
-            .onStart {
+            }.catch {
+                emit(ResultWrapper.Error(Exception(it)))
+            }.onStart {
                 emit(ResultWrapper.Loading())
                 delay(2000)
             }
@@ -77,7 +79,7 @@ class CartRepositoryImpl(
                 affectedRow > 0
             }
         } ?: flow {
-            emit(ResultWrapper.Error(IllegalStateException("Menu ID not found")))
+            emit(ResultWrapper.Error(IllegalStateException("Product ID not found")))
         }
     }
 
@@ -114,7 +116,12 @@ class CartRepositoryImpl(
     override suspend fun order(items: List<Cart>): Flow<ResultWrapper<Boolean>> {
         return proceedFlow {
             val orderItems = items.map {
-                OrderItemRequest(it.itemNotes, it.menuPrice.toInt(), it.menuName, it.itemQuantity)
+                OrderItemRequest(
+                    it.itemNotes,
+                    it.menuPrice.toInt(),
+                    it.menuName,
+                    it.itemQuantity
+                )
             }
 
             val orderRequest = OrderRequest(

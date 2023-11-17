@@ -9,6 +9,7 @@ import com.zhari.bitaste.data.network.api.model.order.OrderResponse
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
@@ -25,7 +26,7 @@ interface RestaurantService {
     suspend fun getCategories(): CategoriesResponse
 
     @POST("order")
-    suspend fun createOrder(orderRequest: OrderRequest): OrderResponse
+    suspend fun createOrder(@Body orderRequest: OrderRequest): OrderResponse
 
     companion object {
         @JvmStatic

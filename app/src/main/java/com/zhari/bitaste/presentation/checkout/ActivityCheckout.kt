@@ -43,7 +43,7 @@ class ActivityCheckout : AppCompatActivity() {
             }, doOnError = {
                     binding.layoutState.root.isVisible = false
                     binding.layoutState.pbLoading.isVisible = false
-                    Toast.makeText(this, "Checkout Error", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, it.exception?.message, Toast.LENGTH_SHORT).show()
                 }, doOnLoading = {
                     binding.layoutState.root.isVisible = true
                     binding.layoutState.pbLoading.isVisible = true
@@ -65,10 +65,6 @@ class ActivityCheckout : AppCompatActivity() {
         binding.btnOrder.setOnClickListener {
             viewModel.createOrder()
         }
-    }
-
-    private fun deleteAllCart() {
-        viewModel.deleteAll()
     }
 
     private fun backToHomeClickListener() {

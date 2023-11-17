@@ -4,10 +4,10 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.zhari.bitaste.data.repository.MenuRepository
 import com.zhari.bitaste.data.repository.UserRepository
-import com.zhari.bitaste.model.category.Category
 import com.zhari.bitaste.model.product.Menu
 import com.zhari.bitaste.utils.ResultWrapper
 import kotlinx.coroutines.Dispatchers
@@ -17,10 +17,10 @@ class HomeViewModel(
     private val menuRepo: MenuRepository,
     private val userRepo: UserRepository
 ) : ViewModel() {
-
-    private val _categories = MutableLiveData<ResultWrapper<List<Category>>>()
-    val categories: LiveData<ResultWrapper<List<Category>>>
-        get() = _categories
+    val categories = menuRepo.getCategories().asLiveData(Dispatchers.IO)
+//    private val _categories = MutableLiveData<ResultWrapper<List<Category>>>()
+//    val categories: LiveData<ResultWrapper<List<Category>>>
+//        get() = _categories
 
     private val _menus = MutableLiveData<ResultWrapper<List<Menu>>>()
     val menus: LiveData<ResultWrapper<List<Menu>>>
@@ -30,13 +30,13 @@ class HomeViewModel(
     val menuList: LiveData<ResultWrapper<List<Menu>>>
         get() = _menuList
 
-    fun getCategories() {
-        viewModelScope.launch(Dispatchers.IO) {
-            menuRepo.getCategories().collect {
-                _categories.postValue(it)
-            }
-        }
-    }
+//    fun getCategories() {
+//        viewModelScope.launch(Dispatchers.IO) {
+//            menuRepo.getCategories().collect {
+//                _categories.postValue(it)
+//            }
+//        }
+//    }
 
     fun getMenus(category: String? = null) {
         viewModelScope.launch(Dispatchers.IO) {

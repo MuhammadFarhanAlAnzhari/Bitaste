@@ -10,8 +10,8 @@ import com.zhari.bitaste.utils.proceedFlow
 import kotlinx.coroutines.flow.Flow
 
 interface MenuRepository {
-    suspend fun getCategories(): Flow<ResultWrapper<List<Category>>>
-    suspend fun getMenus(category: String? = null): Flow<ResultWrapper<List<Menu>>>
+    fun getCategories(): Flow<ResultWrapper<List<Category>>>
+    fun getMenus(category: String? = null): Flow<ResultWrapper<List<Menu>>>
     suspend fun getMenuList(): Flow<ResultWrapper<List<Menu>>>
 }
 
@@ -19,13 +19,13 @@ class MenuRepositoryImpl(
     private val apiDataSource: BitasteDataSource
 ) : MenuRepository {
 
-    override suspend fun getCategories(): Flow<ResultWrapper<List<Category>>> {
+    override fun getCategories(): Flow<ResultWrapper<List<Category>>> {
         return proceedFlow {
             apiDataSource.getCategories().data?.toCategoryList() ?: emptyList()
         }
     }
 
-    override suspend fun getMenus(category: String?): Flow<ResultWrapper<List<Menu>>> {
+    override fun getMenus(category: String?): Flow<ResultWrapper<List<Menu>>> {
         return proceedFlow {
             apiDataSource.getProducts(category)?.data?.toMenuList() ?: emptyList()
         }

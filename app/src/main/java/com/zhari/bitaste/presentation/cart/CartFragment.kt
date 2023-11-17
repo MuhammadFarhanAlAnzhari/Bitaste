@@ -98,6 +98,8 @@ class CartFragment : Fragment() {
                         false
                     binding.rvMenuCart.isVisible =
                         true
+                    binding.clCheckout.isVisible =
+                        true
                     result.payload?.let { (carts, totalPrice) ->
                         cartListAdapter.submitData(
                             carts

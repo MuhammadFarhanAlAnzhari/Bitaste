@@ -16,7 +16,7 @@ android {
     defaultConfig {
         applicationId = "com.zhari.bitaste"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -34,12 +34,12 @@ android {
     }
     compileOptions {
         sourceCompatibility =
-            JavaVersion.VERSION_1_8
+            JavaVersion.VERSION_17
         targetCompatibility =
-            JavaVersion.VERSION_1_8
+            JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         viewBinding = true
@@ -117,4 +117,11 @@ dependencies {
 
     // koin
     implementation("io.insert-koin:koin-android:3.5.0")
+
+    // unit testing
+    testImplementation("io.mockk:mockk-android:1.13.8")
+    testImplementation("io.mockk:mockk-agent:1.13.8")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.2")
+    testImplementation("app.cash.turbine:turbine:1.0.0")
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
 }

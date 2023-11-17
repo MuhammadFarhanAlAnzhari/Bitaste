@@ -71,8 +71,8 @@ class HomeFragment : Fragment() {
 
     private fun getData() {
         /*homeViewModel.getMenus()*/
-        homeViewModel.getCategories()
-        homeViewModel.getMenuList()
+        homeViewModel.categories
+        homeViewModel.getMenus()
     }
 
     private fun setObserveDataMenu() {
@@ -80,9 +80,9 @@ class HomeFragment : Fragment() {
             it.proceedWhen(
                 doOnSuccess = { result ->
                     binding.clSubheader.isVisible = true
-                    binding.layoutState.root.isVisible = false
-                    binding.layoutState.pbLoading.isVisible = false
-                    binding.layoutState.tvError.isVisible = false
+                    binding.layoutStateMenu.root.isVisible = false
+                    binding.layoutStateMenu.pbLoading.isVisible = false
+                    binding.layoutStateMenu.tvError.isVisible = false
                     binding.rvMenu.isVisible = true
                     result.payload?.let {
                         menuAdapter.setData(it)
@@ -90,23 +90,23 @@ class HomeFragment : Fragment() {
                 },
                 doOnLoading = {
                     binding.clSubheader.isVisible = false
-                    binding.layoutState.root.isVisible = true
-                    binding.layoutState.pbLoading.isVisible = true
-                    binding.layoutState.tvError.isVisible = false
+                    binding.layoutStateMenu.root.isVisible = true
+                    binding.layoutStateMenu.pbLoading.isVisible = true
+                    binding.layoutStateMenu.tvError.isVisible = false
                     binding.rvMenu.isVisible = false
                 },
                 doOnError = { err ->
-                    binding.layoutState.root.isVisible = true
-                    binding.layoutState.pbLoading.isVisible = false
-                    binding.layoutState.tvError.isVisible = true
-                    binding.layoutState.tvError.text = err.exception?.message.orEmpty()
+                    binding.layoutStateMenu.root.isVisible = true
+                    binding.layoutStateMenu.pbLoading.isVisible = false
+                    binding.layoutStateMenu.tvError.isVisible = true
+                    binding.layoutStateMenu.tvError.text = err.exception?.message.orEmpty()
                     binding.rvMenu.isVisible = false
                 },
                 doOnEmpty = {
-                    binding.layoutState.root.isVisible = true
-                    binding.layoutState.pbLoading.isVisible = false
-                    binding.layoutState.tvError.isVisible = true
-                    binding.layoutState.tvError.text = getString(R.string.no_data_text)
+                    binding.layoutStateMenu.root.isVisible = true
+                    binding.layoutStateMenu.pbLoading.isVisible = false
+                    binding.layoutStateMenu.tvError.isVisible = true
+                    binding.layoutStateMenu.tvError.text = getString(R.string.no_data_text)
                     binding.rvMenu.isVisible = false
                 }
             )
@@ -148,9 +148,9 @@ class HomeFragment : Fragment() {
             it.proceedWhen(
                 doOnSuccess = { result ->
                     binding.clSubheader.isVisible = true
-                    binding.layoutState.root.isVisible = false
-                    binding.layoutState.pbLoading.isVisible = false
-                    binding.layoutState.tvError.isVisible = false
+                    binding.layoutStateCategory.root.isVisible = false
+                    binding.layoutStateCategory.pbLoading.isVisible = false
+                    binding.layoutStateCategory.tvError.isVisible = false
                     binding.rvCategory.isVisible = true
                     result.payload?.let {
                         categoryAdapter.setItems(it)
@@ -158,23 +158,23 @@ class HomeFragment : Fragment() {
                 },
                 doOnLoading = {
                     binding.clSubheader.isVisible = false
-                    binding.layoutState.root.isVisible = true
-                    binding.layoutState.pbLoading.isVisible = false
-                    binding.layoutState.tvError.isVisible = false
+                    binding.layoutStateCategory.root.isVisible = true
+                    binding.layoutStateCategory.pbLoading.isVisible = false
+                    binding.layoutStateCategory.tvError.isVisible = false
                     binding.rvCategory.isVisible = false
                 },
                 doOnError = { err ->
-                    binding.layoutState.root.isVisible = true
-                    binding.layoutState.pbLoading.isVisible = false
-                    binding.layoutState.tvError.isVisible = true
-                    binding.layoutState.tvError.text = err.exception?.message.orEmpty()
+                    binding.layoutStateCategory.root.isVisible = true
+                    binding.layoutStateCategory.pbLoading.isVisible = false
+                    binding.layoutStateCategory.tvError.isVisible = true
+                    binding.layoutStateCategory.tvError.text = err.exception?.message.orEmpty()
                     binding.rvCategory.isVisible = false
                 },
                 doOnEmpty = {
-                    binding.layoutState.root.isVisible = true
-                    binding.layoutState.pbLoading.isVisible = false
-                    binding.layoutState.tvError.isVisible = true
-                    binding.layoutState.tvError.text = getString(R.string.no_data_text)
+                    binding.layoutStateCategory.root.isVisible = true
+                    binding.layoutStateCategory.pbLoading.isVisible = false
+                    binding.layoutStateCategory.tvError.isVisible = true
+                    binding.layoutStateCategory.tvError.text = getString(R.string.no_data_text)
                     binding.rvCategory.isVisible = false
                 }
             )

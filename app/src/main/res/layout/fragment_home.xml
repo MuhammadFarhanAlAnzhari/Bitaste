@@ -153,8 +153,18 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@id/tv_food_menu_list"
         app:layout_constraintTop_toBottomOf="@id/cv_banner"
-        tools:listitem="@layout/item_category_menu"
-        tools:ignore="NotSibling" />
+        tools:ignore="NotSibling"
+        tools:listitem="@layout/item_category_menu" />
+
+    <include
+        android:id="@+id/layout_state_category"
+        layout="@layout/common_layout_content_state"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintTop_toTopOf="@id/rv_category"
+        app:layout_constraintBottom_toBottomOf="@id/rv_category"/>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -178,11 +188,14 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <include
-            android:id="@+id/layout_state"
-            layout="@layout/common_layout_cart_state"
+            android:id="@+id/layout_state_menu"
+            layout="@layout/common_layout_content_state"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintTop_toBottomOf="@id/cl_subheader" />
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:layout_constraintTop_toTopOf="@id/rv_menu"
+            app:layout_constraintBottom_toBottomOf="@id/rv_menu"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_menu"

@@ -28,4 +28,8 @@ class CartViewModel(private val repo: CartRepository) : ViewModel() {
     fun updateNotes(item: Cart) {
         viewModelScope.launch { repo.setCartNotes(item).collect() }
     }
+
+    fun setCartNotes(item: Cart) {
+        viewModelScope.launch { repo.setCartNotes(item).collect() }
+    }
 }
